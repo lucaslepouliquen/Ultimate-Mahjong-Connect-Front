@@ -1,1 +1,9 @@
-<p>board works!</p>
+<div class="board">
+    <div *ngFor="let row of board; let i = index" class="row">
+      <app-mahjong-tile 
+        *ngFor="let tile of row; let j = index"
+        [tile]="tile"
+        (click)="selectTile(i, j)">
+      </app-mahjong-tile>
+    </div>
+  </div>

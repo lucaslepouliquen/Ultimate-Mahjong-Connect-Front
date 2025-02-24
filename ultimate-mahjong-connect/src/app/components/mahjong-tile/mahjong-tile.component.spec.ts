@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TileComponent } from './tile.component';
+import { MahjongTileComponent } from './mahjong-tile.component';
 
-describe('TileComponent', () => {
-  let component: TileComponent;
-  let fixture: ComponentFixture<TileComponent>;
+describe('MahjongTileComponent', () => {
+  let component: MahjongTileComponent;
+  let fixture: ComponentFixture<MahjongTileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TileComponent]
+      imports: [MahjongTileComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TileComponent);
+    fixture = TestBed.createComponent(MahjongTileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
