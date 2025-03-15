@@ -1,6 +1,6 @@
 <div class="board">
     <div *ngFor="let row of board; let i = index" class="row">
-      <app-mahjong-tile 
+      <app-mahjong-tile class="grid-item"
         *ngFor="let tile of row; let j = index"
         [tile]="tile"
         (click)="selectTile(i, j)">

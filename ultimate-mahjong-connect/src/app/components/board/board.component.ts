@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class BoardComponent implements OnInit {
-  board: MahjongTileComponent[][] = [];
+  board: any[][] = [];
   selectedTile: { row: number, col: number } | null = null;
   private boardService = inject(MahjongBoardService)
 
@@ -23,7 +23,7 @@ export class BoardComponent implements OnInit {
   loadBoard(): void {
     this.boardService.initializeDeterministic().subscribe((response) => {
       if(response.data){
-        
+        this.board = response.data;
       }
       else{
         console.log('Error:', response.error);

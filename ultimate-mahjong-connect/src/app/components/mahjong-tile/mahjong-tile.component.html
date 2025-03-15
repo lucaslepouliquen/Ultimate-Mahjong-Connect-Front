@@ -1,4 +1,6 @@
-<div class="tile" [class.hidden]="tile.isRemoved">
-    {{ tile.value }}
+<div *ngIf = "tile" class="tile-container">
+  <div class="tile" [class.hidden]="tile.isRemoved">
+    <img *ngIf="tile" [src]="getTileImagePath()" alt="Mahjong Tile" class="tile-image">
   </div>
+</div> 
   
