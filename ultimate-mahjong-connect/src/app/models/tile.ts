@@ -3,7 +3,7 @@ export interface Tile {
     value: number;
     isRemoved:boolean;
     isMatched: boolean;
-    display: string;
+    displayText: string;
 }
 
 export enum MahjongTileCategory {
