@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MahjongBoardService } from '../../services/mahjong-board.service';
-import { HttpErrorService } from '@utilities/http-error.service';
 import { MahjongTileComponent } from '../mahjong-tile/mahjong-tile.component';
 import { CommonModule } from '@angular/common';
 
@@ -13,19 +12,22 @@ import { CommonModule } from '@angular/common';
 })
 
 export class BoardComponent implements OnInit {
-  private errorService = inject(HttpErrorService)
-  board: any[][] = [];
+  board: MahjongTileComponent[][] = [];
   selectedTile: { row: number, col: number } | null = null;
-  // 
-  constructor(private boardService: MahjongBoardService) { }
+  private boardService = inject(MahjongBoardService)
 
   ngOnInit(): void {
     this.loadBoard();
   }
 
   loadBoard(): void {
-    this.boardService.initializeDeterministic().subscribe((data) => {
-      this.board = data;
+    this.boardService.initializeDeterministic().subscribe((response) => {
+      if(response.data){
+        
+      }
+      else{
+        console.log('Error:', response.error);
+      }
     });
   }
 

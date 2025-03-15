@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Tile } from '../../models/tile';
 
 @Component({
   selector: 'app-mahjong-tile',
@@ -7,5 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './mahjong-tile.component.css'
 })
 export class MahjongTileComponent {
-  @Input() tile: any;
+  @Input() tile: undefined | Tile;
 }
+
