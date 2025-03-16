@@ -1,8 +1,9 @@
 .tile-container {
     flex: 1;
-    max-width: calc(100% / 12); 
+    height: 50px;
+    width: 50px; 
     aspect-ratio: 3/4; 
-    padding: 3px;
+    padding: 1px;
     box-sizing: border-box;
 }
   

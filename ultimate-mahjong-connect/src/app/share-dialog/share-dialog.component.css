@@ -1,0 +1,42 @@
+
+.close {
+    color: #DB4437;
+  }
+.fa-facebook-f {
+    color: #1877F2;
+  }
+  
+  .fa-facebook-messenger {
+    color: #0084FF;
+  }
+  
+  .fa-whatsapp {
+    color: #25D366;
+  }
+  
+  .fa-envelope {
+    color: #DB4437;
+  }
+  
+  .fa-threads {
+    color: #000000;
+  }
+  
+  .fa-x-twitter {
+    color: #1DA1F2;
+  }
+  
+  .fa-link {
+    color: #607D8B;
+  }
+  
+  .share-method {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+  }
+  
+  .share-method i {
+    font-size: 20px;
+    margin-right: 8px;
+  }

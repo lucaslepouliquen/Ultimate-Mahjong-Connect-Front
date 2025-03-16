@@ -1,0 +1,46 @@
+<!-- share-dialog.component.html -->
+<div class="share-dialog">
+    <div class="dialog-header">
+      <h2>Share</h2>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon class="close">close</mat-icon>
+      </button>
+    </div>
+
+    <div class="share-methods">
+        <button mat-button class="share-method" (click)="share('facebook')">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('messenger')">
+            <i class="fab fa-facebook-messenger"></i>
+            <span>Messenger</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('whatsapp')">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('email')">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('threads')">
+            <i class="fab fa-threads"></i>
+            <span>Threads</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('twitter')">
+            <i class="fab fa-x-twitter"></i>
+            <span>X</span>
+          </button>
+          
+          <button mat-button class="share-method" (click)="share('link')">
+            <i class="fas fa-link"></i>
+            <span>Copy link</span>
+          </button>
+    </div>
+  </div>

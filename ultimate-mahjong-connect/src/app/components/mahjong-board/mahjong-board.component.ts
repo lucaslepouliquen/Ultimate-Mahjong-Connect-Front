@@ -7,8 +7,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-board',
   standalone: true,
   imports: [CommonModule, MahjongTileComponent],
-  templateUrl: './board.component.html',
-  styleUrl: './board.component.css'
+  templateUrl: './mahjong-board.component.html',
+  styleUrl: './mahjong-board.component.css'
 })
 
 export class BoardComponent implements OnInit {

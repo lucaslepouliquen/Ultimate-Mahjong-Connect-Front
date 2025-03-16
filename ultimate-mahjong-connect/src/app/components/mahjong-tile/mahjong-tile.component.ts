@@ -32,17 +32,18 @@ export class MahjongTileComponent implements OnInit {
 
   getTileImagePath(): string {
      try {
-      if(!this.tile || this.tile.isRemoved){
-        return 'assets/tile/Removed.png';
+      if(!this.tile || !this.tile.category || this.tile.isRemoved){
+        return 'tile/bamboo/1.svg';
       }
       else{
-        const category = MahjongTileCategory[this.tile.category].toLowerCase();
-        return `assets/tile/${category}/${this.tile.value}.png`;
+        const category = MahjongTileCategory[this.tile?.category].toString().toLowerCase();
+        return `tile/bamboo/1.svg`;
+        //return `tile/${category}/${this.tile.value}.svg`;
       }
     } 
     catch(e) {
       console.error('Error loading tile image:', e);
-      return 'assets/tile/default.png';
+      return 'tile/default.png';
     }
 
   }
