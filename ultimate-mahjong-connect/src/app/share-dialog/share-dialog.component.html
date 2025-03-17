@@ -23,11 +23,6 @@
             <span>WhatsApp</span>
           </button>
           
-          <button mat-button class="share-method" (click)="share('email')">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-          </button>
-          
           <button mat-button class="share-method" (click)="share('threads')">
             <i class="fab fa-threads"></i>
             <span>Threads</span>
@@ -38,9 +33,14 @@
             <span>X</span>
           </button>
           
-          <button mat-button class="share-method" (click)="share('link')">
+          <button mat-button *ngIf="!isCopied" class="share-method" (click)="share('link')">
             <i class="fas fa-link"></i>
             <span>Copy link</span>
+          </button>
+
+          <button mat-button *ngIf="isCopied" class="share-method">
+            <i class="fas fa-check"></i>
+            <span>Link is already copied !</span>
           </button>
     </div>
   </div>
