@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { HttpErrorService } from '@utilities/http-error.service'; 
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Tile } from '../models/tile';
 
 export interface ServiceResponse<T> {
@@ -21,7 +21,9 @@ export class MahjongBoardService {
   
     initializeDeterministic(): Observable<ServiceResponse<Tile[][]>>
     {
-      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=deterministic`, {}).pipe(
+      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=deterministic`, {})
+      .pipe(
+        tap(data => console.log('Raw data from API:', data)),
         map(board => ({ data: board })),
         catchError(err => of ({
           data: [[]],

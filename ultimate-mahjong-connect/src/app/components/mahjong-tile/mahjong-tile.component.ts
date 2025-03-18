@@ -32,13 +32,13 @@ export class MahjongTileComponent implements OnInit {
 
   getTileImagePath(): string {
      try {
-      if(!this.tile || !this.tile.category || this.tile.isRemoved){
-        return 'tile/bamboo/1.svg';
+      if(!this.tile || this.tile.isRemoved){
+        return 'tile/undefined.svg';
       }
       else{
-        const category = MahjongTileCategory[this.tile?.category].toString().toLowerCase();
-        return `tile/bamboo/1.svg`;
-        //return `tile/${category}/${this.tile.value}.svg`;
+        const category = MahjongTileCategory[this.category].toString().toLowerCase();
+        var offset = 1;
+        return `tile/${category}/${this.tile.value + offset}.svg`;
       }
     } 
     catch(e) {

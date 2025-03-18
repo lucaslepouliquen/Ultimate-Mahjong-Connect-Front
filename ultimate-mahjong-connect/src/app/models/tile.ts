@@ -7,11 +7,11 @@ export interface Tile {
 }
 
 export enum MahjongTileCategory {
-  Bamboo = 1,
-  Circles = 2,
-  Characters = 3,
-  Winds = 4,
-  Dragons = 5,
-  Flowers = 6,
-  Seasons = 7
+  Bamboo = 0,
+  Circles = 1,
+  Characters = 2,
+  Winds = 3,
+  Dragons = 4,
+  Flowers = 5,
+  Seasons = 6
 }

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
+  <!-- Tile background -->
+  <rect width="100" height="140" rx="5" fill="#f8f3d6" stroke="#d4a762" stroke-width="2"/>
+  
+  <!-- Bamboo icons - Three rows of three -->
+  <!-- Top row -->
+  <g transform="translate(25, 25)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(50, 25)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(75, 25)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <!-- Middle row -->
+  <g transform="translate(25, 65)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(50, 65)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(75, 65)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <!-- Bottom row -->
+  <g transform="translate(25, 105)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(50, 105)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <g transform="translate(75, 105)" fill="#1a7736">
+    <rect x="-3" y="-15" width="6" height="30" rx="3" fill="#1a7736"/>
+    <rect x="-5" y="-12" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="-4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="4" width="10" height="2" rx="1" fill="#115324"/>
+    <rect x="-5" y="12" width="10" height="2" rx="1" fill="#115324"/>
+    <path d="M0,-15 C-8,-22 -8,-8 0,-12 C8,-22 8,-8 0,-12" fill="#4caf50"/>
+  </g>
+  
+  <!-- Character -->
+  <text x="50" y="120" font-family="Arial" font-size="16" fill="#cc0000" text-anchor="middle">九</text>
+</svg>
