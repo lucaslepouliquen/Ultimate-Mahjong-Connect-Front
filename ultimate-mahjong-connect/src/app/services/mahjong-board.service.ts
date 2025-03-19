@@ -23,7 +23,6 @@ export class MahjongBoardService {
     {
       return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=deterministic`, {})
       .pipe(
-        tap(data => console.log('Raw data from API:', data)),
         map(board => ({ data: board })),
         catchError(err => of ({
           data: [[]],
