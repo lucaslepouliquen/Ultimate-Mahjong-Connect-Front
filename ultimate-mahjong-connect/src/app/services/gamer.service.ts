@@ -20,7 +20,7 @@ export class GameService {
   private errorService = inject(HttpErrorService)
 
   getGamers(): Observable<ServiceResponse<Gamer[]>> {
-    return this.http.get<Gamer[]>(this.apiUrl)
+    return this.http.get<Gamer[]>(this.apiUrl,{withCredentials: true })
     .pipe(
       map(gamers => ({ data: gamers })),
       catchError(err => of ({
@@ -31,7 +31,7 @@ export class GameService {
   }
 
   getGamerByPseudonyme(pseudonyme: string): Observable<any> {
-    return this.http.get<Gamer>(`${this.apiUrl}/${pseudonyme}`).pipe(
+    return this.http.get<Gamer>(`${this.apiUrl,{withCredentials: true }}/${pseudonyme}`).pipe(
       map(gamer => ({ data: gamer })),
       catchError(err => of ({
         data: [],

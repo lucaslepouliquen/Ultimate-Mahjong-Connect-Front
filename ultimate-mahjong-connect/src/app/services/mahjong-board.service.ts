@@ -21,7 +21,7 @@ export class MahjongBoardService {
   
     initializeDeterministic(): Observable<ServiceResponse<Tile[][]>>
     {
-      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=deterministic`, {})
+      return this.http.get<Tile[][]>(`${this.apiUrl,{withCredentials: true }}/board?mode=deterministic`, {})
       .pipe(
         map(board => ({ data: board })),
         catchError(err => of ({
@@ -33,7 +33,7 @@ export class MahjongBoardService {
   
     initializeRandom(): Observable<ServiceResponse<Tile[][]>> 
     {
-      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=random`, {}).pipe(
+      return this.http.get<Tile[][]>(`${this.apiUrl,{withCredentials: true }}/board?mode=random`, {}).pipe(
         map(board => ({ data: board })),
         catchError(err => of ({
           data: [[]],
