@@ -31,7 +31,7 @@ export class GameService {
   }
 
   getGamerByPseudonyme(pseudonyme: string): Observable<any> {
-    return this.http.get<Gamer>(`${this.apiUrl,{withCredentials: true }}/${pseudonyme}`).pipe(
+    return this.http.get<Gamer>(`${this.apiUrl}/${pseudonyme}`,{withCredentials: true }).pipe(
       map(gamer => ({ data: gamer })),
       catchError(err => of ({
         data: [],
