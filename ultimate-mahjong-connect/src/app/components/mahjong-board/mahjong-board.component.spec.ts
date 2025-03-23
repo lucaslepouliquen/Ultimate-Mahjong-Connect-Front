@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BoardComponent } from './mahjong-board.component';
+import { MahjongBoardService } from 'src/app/services/mahjong-board.service';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -8,7 +9,11 @@ describe('BoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoardComponent]
+      imports: [BoardComponent],
+      providers:[
+        MahjongBoardService, 
+        provideHttpClient(),
+      ]
     })
     .compileComponents();
 

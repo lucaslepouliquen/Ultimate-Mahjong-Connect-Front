@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: true,
 })
 export class AppComponent {
-  title = 'ultimate-mahjong-connect';
+  title = 'Ultimate Mahjong Connect';
   constructor(private dialog:MatDialog) {}
 
   openShareDialog(): void {
