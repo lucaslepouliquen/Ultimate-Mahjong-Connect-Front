@@ -1,50 +1,55 @@
 .tile-container {
     flex: 1;
-    min-width: 50px; 
-    max-width: 120px; 
-    
+    min-width: 50px;
+    max-width: 120px;
+
     aspect-ratio: 3/4;
-    
+
     padding: 0.5%;
     box-sizing: border-box;
 }
-  
+
 .tile {
     width: 100%;
     height: 100%;
     background-color: #fbf5de;
     border: 1px solid #d4a762;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     font-size: clamp(10px, 2vw, 14px);
-    
+
     cursor: pointer;
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
-    
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+
     transition: all 0.2s ease;
 }
-  
+
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 @media (max-width: 768px) {
     .tile-container {
-      min-width: 40px;
-      padding: 0.3%;
-}
-    
-.tile {
-      box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        min-width: 40px;
+        padding: 0.3%;
+    }
+
+    .tile {
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
 }
-  
+
 @media (max-width: 480px) {
     .tile-container {
-      min-width: 30px;
-      padding: 0.2%;
+        min-width: 30px;
+        padding: 0.2%;
+    }
+
+    .tile {
+        border-width: 0.5px;
+    }
 }
-    
-.tile {
-    border-width: 0.5px;
-}
-  }
