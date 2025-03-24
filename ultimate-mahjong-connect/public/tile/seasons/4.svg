@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
+  <!-- Tile background -->
+  <rect x="5" y="5" width="90" height="130" rx="5" ry="5" fill="#f0f0e0" stroke="#000" stroke-width="2"/>
+  <rect x="10" y="10" width="80" height="120" rx="3" ry="3" fill="none" stroke="#8B4513" stroke-width="0.5" stroke-opacity="0.3"/>
+  
+  <!-- Winter symbol - Snowy landscape with snowflakes -->
+  <g transform="translate(50, 75)">
+    <!-- Snow-covered ground -->
+    <path d="M -40,30 C -30,25 -20,28 -10,25 C 0,22 10,25 20,22 C 30,19 40,30 40,30 L 40,40 L -40,40 Z"
+          fill="#F0F8FF" stroke="#B0C4DE" stroke-width="1"/>
+    
+    <!-- Evergreen trees -->
+    <g transform="translate(-25, 20)">
+      <path d="M 0,10 V -5" fill="none" stroke="#2F4F4F" stroke-width="2" stroke-linecap="round"/>
+      <path d="M -10,10 L 0,-10 L 10,10" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -8,5 L 0,-8 L 8,5" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -6,0 L 0,-6 L 6,0" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+    </g>
+    
+    <g transform="translate(0, 20)">
+      <path d="M 0,10 V -5" fill="none" stroke="#2F4F4F" stroke-width="2" stroke-linecap="round"/>
+      <path d="M -12,10 L 0,-15 L 12,10" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -10,5 L 0,-12 L 10,5" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -8,0 L 0,-9 L 8,0" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -6,-5 L 0,-6 L 6,-5" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+    </g>
+    
+    <g transform="translate(25, 20)">
+      <path d="M 0,10 V -5" fill="none" stroke="#2F4F4F" stroke-width="2" stroke-linecap="round"/>
+      <path d="M -10,10 L 0,-10 L 10,10" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -8,5 L 0,-8 L 8,5" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+      <path d="M -6,0 L 0,-6 L 6,0" fill="#2E8B57" stroke="#006400" stroke-width="1"/>
+    </g>
+    
+    <!-- Snowflakes -->
+    <g transform="translate(-30, -20)">
+      <path d="M 0,0 V -6 M 0,0 V 6 M 0,0 L -5,-5 M 0,0 L 5,5 
+               M 0,0 L -5,5 M 0,0 L 5,-5" 
+            fill="none" stroke="#B0C4DE" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(-10, -30)">
+      <path d="M 0,0 V -6 M 0,0 V 6 M 0,0 L -5,-5 M 0,0 L 5,5 
+               M 0,0 L -5,5 M 0,0 L 5,-5" 
+            fill="none" stroke="#B0C4DE" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(10, -20)">
+      <path d="M 0,0 V -6 M 0,0 V 6 M 0,0 L -5,-5 M 0,0 L 5,5 
+               M 0,0 L -5,5 M 0,0 L 5,-5" 
+            fill="none" stroke="#B0C4DE" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(30, -30)">
+      <path d="M 0,0 V -6 M 0,0 V 6 M 0,0 L -5,-5 M 0,0 L 5,5 
+               M 0,0 L -5,5 M 0,0 L 5,-5" 
+            fill="none" stroke="#B0C4DE" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(-20, -5)">
+      <path d="M 0,0 V -4 M 0,0 V 4 M 0,0 L -3,-3 M 0,0 L 3,3 
+               M 0,0 L -3,3 M 0,0 L 3,-3" 
+            fill="none" stroke="#B0C4DE" stroke-width="1" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(20, -5)">
+      <path d="M 0,0 V -4 M 0,0 V 4 M 0,0 L -3,-3 M 0,0 L 3,3 
+               M 0,0 L -3,3 M 0,0 L 3,-3" 
+            fill="none" stroke="#B0C4DE" stroke-width="1" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Frozen pond -->
+    <ellipse cx="-15" cy="10" rx="10" ry="5" fill="#ADD8E6" stroke="#87CEEB" stroke-width="1"/>
+  </g>
+  
+  <!-- Chinese character for Winter (冬) -->
+  <g transform="translate(50, 27) scale(0.35)">
+    <path d="M -30,-20 H 30 M 0,-30 V 30 M -20,0 H 20 
+             M -20,20 H 20" 
+          fill="none" stroke="#4682B4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Season indicator -->
+  <text x="15" y="30" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4682B4">Winter</text>
+  
+  <!-- Small number "6" indicating Seasons = 6 from the enum -->
+  <text x="85" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">6</text>
+</svg>
