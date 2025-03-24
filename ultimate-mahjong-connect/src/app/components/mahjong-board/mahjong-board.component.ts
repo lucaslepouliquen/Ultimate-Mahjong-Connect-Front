@@ -10,10 +10,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './mahjong-board.component.html',
   styleUrl: './mahjong-board.component.css'
 })
-
 export class BoardComponent implements OnInit {
   board: any[][] = [];
-  selectedTile: { row: number, col: number } | null = null;
+  selectedTiles: selectedTile[] = [];
   private boardService = inject(MahjongBoardService)
 
   ngOnInit(): void {
@@ -32,10 +31,19 @@ export class BoardComponent implements OnInit {
   }
 
   selectTile(row: number, col: number): void {
-    if(!this.selectedTile){
-      this.selectedTile = { row, col };
-    } else {
-      console.log('Selected tile:', this.selectedTile);
-    }
+    this.selectedTiles.push(new selectedTile(row, col));
+
+    if(this.selectedTiles.length == 2){
+      this.selectedTiles.splice(0, 2); 
+    } 
+  }
+}
+
+class selectedTile {
+  row: number | undefined;
+  column: number | undefined; 
+  constructor(row: number, column: number) {
+    this.row = row;
+    this.column = column;
   }
 }
