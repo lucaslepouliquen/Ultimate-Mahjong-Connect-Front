@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
+  <!-- Tile background -->
+  <rect x="5" y="5" width="90" height="130" rx="5" ry="5" fill="#f0f0e0" stroke="#000" stroke-width="2"/>
+  <rect x="10" y="10" width="80" height="120" rx="3" ry="3" fill="none" stroke="#8B4513" stroke-width="0.5" stroke-opacity="0.3"/>
+  
+  <!-- Orchid -->
+  <g transform="translate(50, 70)">
+    <!-- Stem and leaves -->
+    <path d="M 0,30 C 0,20 0,10 0,0 C 0,-10 0,-20 0,-30"
+          fill="none" stroke="#228B22" stroke-width="2" stroke-linecap="round"/>
+    
+    <path d="M 0,15 C -10,10 -20,15 -25,5 C -20,0 -10,5 0,0"
+          fill="none" stroke="#228B22" stroke-width="2" stroke-linecap="round"/>
+    
+    <path d="M 0,15 C 10,10 20,15 25,5 C 20,0 10,5 0,0"
+          fill="none" stroke="#228B22" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Orchid flowers -->
+    <g transform="translate(0, -30)">
+      <!-- Main flower -->
+      <path d="M -8,0 C -10,-5 -8,-10 -3,-8 C -1,-12 4,-12 6,-8 C 11,-10 13,-5 11,0 
+               C 13,5 11,10 6,8 C 4,12 -1,12 -3,8 C -8,10 -10,5 -8,0 Z"
+            fill="#DA70D6" stroke="#9932CC" stroke-width="1"/>
+      
+      <!-- Center -->
+      <circle cx="0" cy="0" r="3" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+      
+      <!-- Veins -->
+      <path d="M 0,0 C -2,-3 -3,-6 -2,-9 M 0,0 C 2,-3 3,-6 2,-9
+               M 0,0 C -2,3 -3,6 -2,9 M 0,0 C 2,3 3,6 2,9"
+            fill="none" stroke="#9932CC" stroke-width="0.5"/>
+    </g>
+    
+    <g transform="translate(-12, -20)">
+      <!-- Secondary flower -->
+      <path d="M -6,0 C -7.5,-3.75 -6,-7.5 -2.25,-6 C -0.75,-9 3,-9 4.5,-6 C 8.25,-7.5 9.75,-3.75 8.25,0 
+               C 9.75,3.75 8.25,7.5 4.5,6 C 3,9 -0.75,9 -2.25,6 C -6,7.5 -7.5,3.75 -6,0 Z"
+            fill="#DA70D6" stroke="#9932CC" stroke-width="1"/>
+      
+      <!-- Center -->
+      <circle cx="0" cy="0" r="2" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+    </g>
+    
+    <g transform="translate(12, -20)">
+      <!-- Secondary flower -->
+      <path d="M -6,0 C -7.5,-3.75 -6,-7.5 -2.25,-6 C -0.75,-9 3,-9 4.5,-6 C 8.25,-7.5 9.75,-3.75 8.25,0 
+               C 9.75,3.75 8.25,7.5 4.5,6 C 3,9 -0.75,9 -2.25,6 C -6,7.5 -7.5,3.75 -6,0 Z"
+            fill="#DA70D6" stroke="#9932CC" stroke-width="1"/>
+      
+      <!-- Center -->
+      <circle cx="0" cy="0" r="2" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+    </g>
+    
+    <g transform="translate(-8, -5)">
+      <!-- Bud -->
+      <path d="M -4,0 C -5,-2.5 -4,-5 -1.5,-4 C -0.5,-6 2,-6 3,-4 C 5.5,-5 6.5,-2.5 5.5,0"
+            fill="#DA70D6" stroke="#9932CC" stroke-width="1"/>
+      
+      <!-- Center -->
+      <circle cx="0" cy="-2" r="1" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+    </g>
+    
+    <g transform="translate(8, -5)">
+      <!-- Bud -->
+      <path d="M -4,0 C -5,-2.5 -4,-5 -1.5,-4 C -0.5,-6 2,-6 3,-4 C 5.5,-5 6.5,-2.5 5.5,0"
+            fill="#DA70D6" stroke="#9932CC" stroke-width="1"/>
+      
+      <!-- Center -->
+      <circle cx="0" cy="-2" r="1" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+    </g>
+  </g>
+  
+  <!-- Chinese character for Orchid (兰) -->
+  <g transform="translate(50, 27) scale(0.35)">
+    <path d="M -30,-30 H 30 M 0,-30 V 30 M -30,0 H 30
+             M -30,30 H 30 M -20,-15 C -25,0 -25,15 -20,30"
+          fill="none" stroke="#9932CC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Flower name -->
+  <text x="15" y="30" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9932CC">Orchid</text>
+  
+  <!-- Small number "5" indicating Flowers = 5 from the enum -->
+  <text x="85" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">5</text>
+</svg>
