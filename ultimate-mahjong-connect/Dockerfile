@@ -13,7 +13,7 @@ FROM node:23-alpine3.20
 
 WORKDIR /app
 
-npm install -g http-server
+RUN npm install -g http-server
 
 COPY --from=builder /app/dist ./dist
 
