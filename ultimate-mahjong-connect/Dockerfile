@@ -18,4 +18,4 @@ RUN npm install -g http-server
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 8080
-CMD ["http-server", "dist", "-p", "8080", "--disable-host-check"]
+CMD ["http-server", "dist/ultimate-mahjong-connect", "-p", "8080", "--disable-host-check"]
