@@ -15,13 +15,13 @@ export interface ServiceResponse<T> {
 
 export class MahjongBoardService {
   
-  private apiUrl = 'https://localhost:7049/api/MahjongBoard'
+  private apiUrl = 'https://localhost:7049/api/v1/board'
     private http = inject(HttpClient)
     private errorService = inject(HttpErrorService)
   
     initializeDeterministic(): Observable<ServiceResponse<Tile[][]>>
     {
-      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=deterministic`,{withCredentials: true})
+      return this.http.get<Tile[][]>(`${this.apiUrl}?mode=deterministic`,{withCredentials: true})
       .pipe(
         map(board => ({ data: board })),
         catchError(err => of ({
@@ -33,7 +33,7 @@ export class MahjongBoardService {
   
     initializeRandom(): Observable<ServiceResponse<Tile[][]>> 
     {
-      return this.http.get<Tile[][]>(`${this.apiUrl}/board?mode=random`, {withCredentials: true }).pipe(
+      return this.http.get<Tile[][]>(`${this.apiUrl}?mode=random`, {withCredentials: true }).pipe(
         map(board => ({ data: board })),
         catchError(err => of ({
           data: [[]],
