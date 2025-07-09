@@ -1,14 +1,7 @@
-<mat-toolbar color="accent">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1>{{title}}</h1>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon (click)="openShareDialog()">share</mat-icon>
-    </button>
-</mat-toolbar>
+<app-mahjong-toolbar 
+  [title]="title"
+  (menuClicked)="onMenuClick()"
+  (favoriteClicked)="onFavoriteClick()"
+  (shareClicked)="openShareDialog()">
+</app-mahjong-toolbar>
 <app-board></app-board>
