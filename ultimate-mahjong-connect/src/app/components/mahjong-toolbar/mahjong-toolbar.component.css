@@ -1,0 +1,42 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  min-height: 64px !important;
+  padding: 0 16px;
+}
+
+.toolbar-start {
+  display: flex;
+  align-items: center;
+  min-width: 120px; /* Reserve space for left side buttons */
+}
+
+.toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar-end {
+  display: flex;
+  align-items: center;
+  min-width: 120px; /* Reserve space for right side buttons */
+  justify-content: flex-end;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.example-icon {
+  margin: 0 4px;
+}
+
+.favorite-icon {
+  color: white;
+} 
