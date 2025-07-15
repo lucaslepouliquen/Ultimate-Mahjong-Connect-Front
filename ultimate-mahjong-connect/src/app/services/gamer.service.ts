@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of, map } from 'rxjs';
 import { HttpErrorService } from '@utilities/http-error.service';
 import { Gamer } from '../models/gamer';
+import { ApiConfigService } from './api-config.service';
 
 
 export interface ServiceResponse<T> {
@@ -15,9 +16,14 @@ export interface ServiceResponse<T> {
 })
 
 export class GameService {
-  private apiUrl = 'https://localhost:7049/api/Gamer'
+  private apiUrl: string;
   private http = inject(HttpClient)
   private errorService = inject(HttpErrorService)
+  private apiConfig = inject(ApiConfigService)
+
+  constructor() {
+    this.apiUrl = this.apiConfig.getGamerApiUrl();
+  }
 
   getGamers(): Observable<ServiceResponse<Gamer[]>> {
     return this.http.get<Gamer[]>(this.apiUrl,{withCredentials: true })

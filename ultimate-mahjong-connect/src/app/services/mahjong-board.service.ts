@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpErrorService } from '@utilities/http-error.service'; 
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Tile } from '../models/tile';
+import { ApiConfigService } from './api-config.service';
 
 export interface ServiceResponse<T> {
   data: T;
@@ -15,9 +16,14 @@ export interface ServiceResponse<T> {
 
 export class MahjongBoardService {
   
-  private apiUrl = 'https://localhost:7049/api/v1/board'
-    private http = inject(HttpClient)
-    private errorService = inject(HttpErrorService)
+  private apiUrl: string;
+  private http = inject(HttpClient)
+  private errorService = inject(HttpErrorService)
+  private apiConfig = inject(ApiConfigService)
+
+  constructor() {
+    this.apiUrl = this.apiConfig.getBoardApiUrl();
+  }
   
     initializeDeterministic(): Observable<ServiceResponse<Tile[][]>>
     {

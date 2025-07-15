@@ -1,59 +1,101 @@
-# UltimateMahjongConnect
+# Ultimate Mahjong Connect - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+Application Angular pour le jeu Ultimate Mahjong Connect, déployée sur Kubernetes.
 
-## Development server
+## 🛠️ Tech Stack
+- **Frontend:** Angular 19, TypeScript
+- **Backend:** .NET API (déployé sur Kubernetes)
+- **Infrastructure:** Kubernetes, Docker
+- **CI/CD:** GitHub Actions
 
-To start a local development server, run:
+## 🚀 Déploiement
 
+### Prérequis
+- Cluster Kubernetes configuré
+- `kubectl` installé et configuré
+- Docker installé
+
+### Déploiement local
 ```bash
-ng serve
+# Installation des dépendances
+npm install
+
+# Build de production
+npm run build:prod
+
+# Déploiement Kubernetes
+npm run deploy:k8s
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### CI/CD automatique
+Le déploiement se fait automatiquement via GitHub Actions à chaque push sur `main`.
 
-## Code scaffolding
+**Secrets GitHub requis :**
+- `KUBE_CONFIG` : Configuration Kubernetes (base64 encodée)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🏗️ Architecture Kubernetes
 
+### Namespace
+- `mahjong-connect` : Isolation de l'application
+
+### Ressources
+- **Deployment** : `ultimate-mahjong-connect-front`
+- **Service** : `ultimate-mahjong-connect-front-service`
+- **Ingress** : `ultimate-mahjong-connect-front-ingress`
+
+### Configuration
+- **Replicas** : 1 (optimisé pour Raspberry Pi)
+- **Port** : 8080 (container) → 80 (service)
+- **Ressources** : 64Mi-128Mi RAM, 50m-100m CPU
+
+## 🔗 Communication Backend
+
+L'application communique avec le backend .NET via :
+- **Développement** : `https://localhost:7049` (backend local)
+- **Production** : `http://ultimate-mahjong-connect:8080` (service Kubernetes)
+- **Endpoints** : 
+  - `/api/Gamer` (gestion des joueurs)
+  - `/api/v1/board` (plateau de jeu)
+
+### Configuration automatique
+Le service `ApiConfigService` détecte automatiquement l'environnement :
+- **Mode dev** : Utilise localhost:7049
+- **Mode prod** : Utilise le service Kubernetes interne
+
+## 🛠️ Développement
+
+### Installation
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+### Démarrage en développement
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
-
-To build the project run:
-
+### Tests
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 📁 Structure
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+ultimate-mahjong-connect/
+├── src/                    # Code source Angular
+├── public/                 # Assets statiques
+├── k8s/                    # Manifests Kubernetes
+│   ├── namespace.yaml
+│   └── deployment.yaml
+├── .github/workflows/      # CI/CD
+├── Dockerfile             # Image Docker
+└── package.json
 ```
 
-## Running end-to-end tests
+## 📝 Notes
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- L'application utilise Angular 19
+- Déploiement automatisé sur Kubernetes
+- Communication avec backend .NET via API REST
+- Assets des tuiles dans `public/tile/`

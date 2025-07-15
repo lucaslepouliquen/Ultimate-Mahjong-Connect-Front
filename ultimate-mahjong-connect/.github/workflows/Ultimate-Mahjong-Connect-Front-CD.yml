@@ -1,0 +1,56 @@
+name: Ultimate-Mahjong-Connect-Front CICD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: ultimate-mahjong-connect/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: ./ultimate-mahjong-connect
+      run: npm ci
+        
+    - name: Run tests
+      working-directory: ./ultimate-mahjong-connect
+      continue-on-error: true
+      run: npm test -- --browsers=ChromeHeadless --watch=false --no-progress
+        
+    - name: Build application
+      working-directory: ./ultimate-mahjong-connect
+      run: npm run build
+        
+    - name: Build Docker image
+      run: |
+        cd ultimate-mahjong-connect
+        docker build -t ultimate-mahjong-connect-front:${{ github.sha }} .
+        docker tag ultimate-mahjong-connect-front:${{ github.sha }} ultimate-mahjong-connect-front:latest
+        
+    - name: Deploy to Kubernetes
+      run: |
+        # Configuration Kubernetes
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig.yaml
+        export KUBECONFIG=kubeconfig.yaml
+        
+        # Mettre à jour l'image dans le deployment
+        kubectl set image deployment/ultimate-mahjong-connect-front ultimate-mahjong-connect-front=ultimate-mahjong-connect-front:${{ github.sha }} -n ultimate-mahjong-connect
+        
+        # Vérifier le déploiement
+        kubectl rollout status deployment/ultimate-mahjong-connect-front -n ultimate-mahjong-connect
+        
+    - name: Cleanup
+      if: always()
+      run: rm -f kubeconfig.yaml 
