@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
       - name: ultimate-mahjong-connect-front
-        image: ultimate-mahjong-connect-front:latest
+        image: ghcr.io/lucaslepouliquen/ultimate-mahjong-connect-front-image:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
