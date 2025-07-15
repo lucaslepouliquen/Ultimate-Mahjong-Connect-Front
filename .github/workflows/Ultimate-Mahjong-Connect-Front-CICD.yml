@@ -45,6 +45,9 @@ jobs:
         echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig.yaml
         export KUBECONFIG=kubeconfig.yaml
         
+        # Appliquer les manifests K8s
+        kubectl apply -f k8s/
+        
         # Mettre à jour l'image dans le deployment
         kubectl set image deployment/ultimate-mahjong-connect-front ultimate-mahjong-connect-front=ultimate-mahjong-connect-front:${{ github.sha }} -n ultimate-mahjong-connect
         
