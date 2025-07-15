@@ -15,7 +15,7 @@ export class ApiConfigService {
       return 'https://localhost:7049';
     }
     
-    return 'http://ultimate-mahjong-connect:8080';
+    return 'http://192.168.1.186:32698';
   }
 
   private isDevMode(): boolean {
