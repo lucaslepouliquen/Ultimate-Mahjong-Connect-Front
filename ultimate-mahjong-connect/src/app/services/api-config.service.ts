@@ -15,7 +15,8 @@ export class ApiConfigService {
       return 'https://localhost:7049';
     }
     
-    return 'http://192.168.1.186:32698';
+    // Utiliser l'ingress au lieu du NodePort direct (plus sécurisé)
+    return 'http://192.168.1.186';  // Ingress sur port 80
   }
 
   private isDevMode(): boolean {
