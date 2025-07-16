@@ -17,8 +17,8 @@ export interface ServiceResponse<T> {
 export class MahjongBoardService {
   
   private apiUrl: string;
-  private http = inject(HttpClient)
-  private errorService = inject(HttpErrorService)
+    private http = inject(HttpClient)
+    private errorService = inject(HttpErrorService)
   private apiConfig = inject(ApiConfigService)
 
   constructor() {

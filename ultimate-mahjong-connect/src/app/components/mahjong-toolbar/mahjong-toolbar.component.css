@@ -39,4 +39,26 @@ h1 {
 
 .favorite-icon {
   color: white;
+}
+
+.user-info {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.username {
+  font-weight: 500;
+  color: #333;
+}
+
+.email {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.user-menu-button {
+  margin-left: 8px;
 } 

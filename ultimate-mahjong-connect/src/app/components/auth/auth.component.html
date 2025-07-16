@@ -1,0 +1,112 @@
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>{{ isLoginMode ? 'Se connecter' : 'Créer un compte' }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- OAuth Buttons -->
+      <div class="oauth-section">
+        <button mat-raised-button color="accent" class="oauth-button google-button" (click)="loginWithGoogle()">
+          <mat-icon>account_circle</mat-icon>
+          Continuer avec Google
+        </button>
+        
+        <button mat-raised-button color="accent" class="oauth-button facebook-button" (click)="loginWithFacebook()">
+          <mat-icon>facebook</mat-icon>
+          Continuer avec Facebook
+        </button>
+        
+        <button mat-raised-button color="accent" class="oauth-button instagram-button" (click)="loginWithInstagram()">
+          <mat-icon>camera_alt</mat-icon>
+          Continuer avec Instagram
+        </button>
+      </div>
+
+      <mat-divider>
+        <span class="divider-text">OU</span>
+      </mat-divider>
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="isLoginMode">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email ou Pseudonyme</mat-label>
+          <input matInput formControlName="usernameOrEmail" placeholder="Entrez votre email ou pseudonyme">
+          <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">
+            L'email ou pseudonyme est requis
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Entrez votre mot de passe">
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Le mot de passe est requis
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="full-width">
+          Se connecter
+        </button>
+      </form>
+
+      <!-- Register Form -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!isLoginMode">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Pseudonyme</mat-label>
+          <input matInput formControlName="pseudonyme" placeholder="Choisissez un pseudonyme">
+          <mat-error *ngIf="registerForm.get('pseudonyme')?.hasError('required')">
+            Le pseudonyme est requis
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Entrez votre email">
+          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+            L'email est requis
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+            L'email n'est pas valide
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Choisissez un mot de passe">
+          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+            Le mot de passe est requis
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+            Le mot de passe doit contenir au moins 6 caractères
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Âge</mat-label>
+          <input matInput type="number" formControlName="age" placeholder="Votre âge">
+          <mat-error *ngIf="registerForm.get('age')?.hasError('required')">
+            L'âge est requis
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('age')?.hasError('min')">
+            Vous devez avoir au moins 13 ans
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="full-width">
+          Créer un compte
+        </button>
+      </form>
+
+      <div class="error-message" *ngIf="errorMessage">
+        <mat-error>{{ errorMessage }}</mat-error>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="start">
+      <button mat-button (click)="toggleMode()">
+        {{ isLoginMode ? 'Créer un compte' : 'Déjà un compte ? Se connecter' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div> 
