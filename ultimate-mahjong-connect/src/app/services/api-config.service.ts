@@ -15,7 +15,7 @@ export class ApiConfigService {
       return 'https://localhost:7049';
     }
     
-    return 'http://192.168.1.186:31328';
+    return 'http://192.168.1.186:32698';
   }
 
   private isDevMode(): boolean {
