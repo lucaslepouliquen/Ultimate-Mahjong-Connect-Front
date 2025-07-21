@@ -47,4 +47,16 @@ export class MahjongBoardService {
         }))
       )
     }
+
+    validateTilePath(row1: number, col1: number, row2: number, col2: number): Observable<ServiceResponse<any>>
+    {
+      const params = `?row1=${row1}&column1=${col1}&row2=${row2}&column2=${col2}`;
+      return this.http.get<any>(`${this.apiUrl}/path${params}`, {withCredentials: true}).pipe(
+        map(path => ({ data: path })),
+        catchError(err => of ({
+          data: null,
+          error: this.errorService.formatError(err)
+        }))
+      )
+    }
 }

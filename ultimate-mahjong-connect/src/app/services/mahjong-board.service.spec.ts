@@ -62,6 +62,25 @@ describe('MahjongBoardService', () => {
     req.flush(mockBoard);
   });
 
+  it('should validate tile path', () => {
+    const mockPath = { isValid: true, path: [] };
+
+    service.validateTilePath(0, 0, 1, 1).subscribe(response => {
+      expect(response).toBeDefined();
+      expect(response.data).toBeDefined();
+      expect(response.error).toBeUndefined();
+    });
+
+    const req = httpMock.expectOne(() => true);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.url).toContain('/path');
+    expect(req.request.url).toContain('row1=0');
+    expect(req.request.url).toContain('column1=0');
+    expect(req.request.url).toContain('row2=1');
+    expect(req.request.url).toContain('column2=1');
+    req.flush(mockPath);
+  });
+
   afterEach(() => {
     httpMock.verify();
   });
