@@ -59,8 +59,4 @@ export class MahjongTileComponent implements OnInit {
     // Fallback vers une image par défaut
     event.target.src = 'assets/tile/undefined.svg';
   }
-
-  onImageLoad(event: any): void {
-    this.logger.log('Tile image loaded successfully:', event.target.src);
-  }
 }
