@@ -1,21 +1,26 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MahjongBoardService } from './mahjong-board.service';
 import { HttpErrorService } from '@utilities/http-error.service';
 import { mockMahjongBoard } from './mock-mahjong-board.service';
-import {provideHttpClient } from '@angular/common/http';
 
 describe('MahjongBoardService', () => {
   let service: MahjongBoardService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    providers: [
-      MahjongBoardService, 
-      HttpErrorService,
-      provideHttpClient(),
-    ]
-  });
-    service = TestBed.inject(MahjongBoardService)
+      providers: [
+        MahjongBoardService, 
+        HttpErrorService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
+    service = TestBed.inject(MahjongBoardService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -36,9 +41,15 @@ describe('MahjongBoardService', () => {
       }
       done();
     });
+
+    const req = httpMock.expectOne(request => request.url.includes('/api/v1/board'));
+    expect(req.request.method).toBe('GET');
+    req.flush(mockTiles);
   });
 
   it('should initialize a random board', (done) => {
+    const mockTiles = mockMahjongBoard;
+
     service.initializeRandom().subscribe(response => {
       expect(response.data).toBeTruthy();
       expect(response.error).toBeUndefined();
@@ -47,5 +58,13 @@ describe('MahjongBoardService', () => {
       }
       done();
     });
+
+    const req = httpMock.expectOne(request => request.url.includes('/api/v1/board'));
+    expect(req.request.method).toBe('GET');
+    req.flush(mockTiles);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 });
