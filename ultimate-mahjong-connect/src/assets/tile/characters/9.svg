@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
   <defs>
     <!-- Dégradé pour le fond de la tuile -->
@@ -34,14 +35,11 @@
   <!-- Fond de la tuile avec dégradé et ombre -->
   <rect width="100" height="140" rx="8" fill="url(#tileBg)" stroke="#cbd5e1" stroke-width="2" filter="url(#tileShadow)"/>
   
-  <!-- Caractère chinois "un" (yi) avec dégradé et ombre -->
+  <!-- Caractère chinois avec dégradé et ombre -->
   <g transform="translate(50, 70)">
-    <text x="0" y="0" font-family="'Microsoft YaHei', 'SimHei', Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#charGradient)" text-anchor="middle" dominant-baseline="middle" filter="url(#charShadow)">一</text>
+    <text x="0" y="0" font-family="'Noto Sans SC', 'Microsoft YaHei', 'SimHei', Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#charGradient)" text-anchor="middle" dominant-baseline="middle" filter="url(#charShadow)">九</text>
     
     <!-- Caractère Wan (10,000) avec dégradé et ombre -->
-    <text x="0" y="25" font-family="'Microsoft YaHei', 'SimHei', Arial, sans-serif" font-size="16" font-weight="bold" fill="url(#wanGradient)" text-anchor="middle" dominant-baseline="middle" filter="url(#charShadow)">萬</text>
+    <text x="0" y="25" font-family="'Noto Sans SC', 'Microsoft YaHei', 'SimHei', Arial, sans-serif" font-size="16" font-weight="bold" fill="url(#wanGradient)" text-anchor="middle" dominant-baseline="middle" filter="url(#charShadow)">萬</text>
   </g>
-  
-  <!-- Caractère avec ombre -->
-  <text x="50" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="600" fill="#cc0000" text-anchor="middle" filter="url(#tileShadow)">一</text>
 </svg>

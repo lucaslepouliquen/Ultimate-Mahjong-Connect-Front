@@ -1,23 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
-  <!-- Tile background -->
-  <rect width="100" height="140" rx="5" fill="#f8f3d6" stroke="#d4a762" stroke-width="2"/>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">
+  <defs>
+    <!-- Dégradé pour le fond de la tuile -->
+    <linearGradient id="tileBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Dégradé pour les cercles rouges -->
+    <radialGradient id="redCircleGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#cc0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b0000;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Dégradé pour les cercles verts -->
+    <radialGradient id="greenCircleGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#6bbf6b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a7736;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d4d1a;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Dégradé pour les cercles bleus -->
+    <radialGradient id="blueCircleGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#64b5f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0d47a1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a2e5a;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Dégradé pour les cercles bleus intérieurs -->
+    <radialGradient id="blueInnerGradient" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#90caf9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2196f3;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Dégradé pour les cercles rouges intérieurs -->
+    <radialGradient id="redInnerGradient" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#ff9999;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff3333;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Dégradé pour les cercles verts intérieurs -->
+    <radialGradient id="greenInnerGradient" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#8bc34a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4caf50;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Filtre d'ombre pour les éléments -->
+    <filter id="elementShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Filtre d'ombre pour la tuile -->
+    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
   
-  <!-- Three circles in a diagonal line -->
-  <!-- Top circle (blue) -->
-  <circle cx="30" cy="35" r="12" fill="#0d47a1"/>
-  <circle cx="30" cy="35" r="9" fill="#2196f3"/>
-  <circle cx="30" cy="35" r="5" fill="#0d47a1"/>
+  <!-- Fond de la tuile avec dégradé et ombre -->
+  <rect width="100" height="140" rx="8" fill="url(#tileBg)" stroke="#cbd5e1" stroke-width="2" filter="url(#tileShadow)"/>
   
-  <!-- Middle circle (red) -->
-  <circle cx="50" cy="65" r="12" fill="#cc0000"/>
-  <circle cx="50" cy="65" r="9" fill="#ff3333"/>
-  <circle cx="50" cy="65" r="5" fill="#cc0000"/>
+  <!-- Trois cercles en ligne diagonale -->
+  <!-- Cercle supérieur (bleu) -->
+  <circle cx="30" cy="35" r="12" fill="url(#blueCircleGradient)" filter="url(#elementShadow)"/>
+  <circle cx="30" cy="35" r="9" fill="url(#blueInnerGradient)"/>
+  <circle cx="30" cy="35" r="5" fill="url(#blueCircleGradient)"/>
+  <circle cx="27" cy="32" r="4.8" fill="rgba(255,255,255,0.4)"/>
   
-  <!-- Bottom circle (green) -->
-  <circle cx="70" cy="95" r="12" fill="#1a7736"/>
-  <circle cx="70" cy="95" r="9" fill="#4caf50"/>
-  <circle cx="70" cy="95" r="5" fill="#1a7736"/>
+  <!-- Cercle du milieu (rouge) -->
+  <circle cx="50" cy="65" r="12" fill="url(#redCircleGradient)" filter="url(#elementShadow)"/>
+  <circle cx="50" cy="65" r="9" fill="url(#redInnerGradient)"/>
+  <circle cx="50" cy="65" r="5" fill="url(#redCircleGradient)"/>
+  <circle cx="47" cy="62" r="4.8" fill="rgba(255,255,255,0.4)"/>
   
-  <!-- Character -->
-  <text x="50" y="120" font-family="Arial" font-size="16" fill="#cc0000" text-anchor="middle">三</text>
+  <!-- Cercle inférieur (vert) -->
+  <circle cx="70" cy="95" r="12" fill="url(#greenCircleGradient)" filter="url(#elementShadow)"/>
+  <circle cx="70" cy="95" r="9" fill="url(#greenInnerGradient)"/>
+  <circle cx="70" cy="95" r="5" fill="url(#greenCircleGradient)"/>
+  <circle cx="67" cy="92" r="4.8" fill="rgba(255,255,255,0.4)"/>
+  
+  <!-- Caractère avec ombre -->
+  <text x="50" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="600" fill="#cc0000" text-anchor="middle" filter="url(#tileShadow)">三</text>
 </svg>

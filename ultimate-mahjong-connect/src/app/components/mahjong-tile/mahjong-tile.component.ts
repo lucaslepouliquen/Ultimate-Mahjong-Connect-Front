@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MahjongTileCategory, Tile } from '../../models/tile';
 import { CommonModule } from '@angular/common';
 import { LoggerService } from '../../services/logger.service';
+import { SvgTileService } from '../../services/svg-tile.service';
 
 @Component({
   selector: 'app-mahjong-tile',
@@ -19,7 +20,8 @@ export class MahjongTileComponent implements OnInit {
   @Input() displayText: string="";
 
   constructor(
-    private logger: LoggerService
+    private logger: LoggerService,
+    private svgTileService: SvgTileService
   ) {}
 
   ngOnInit(): void {
@@ -38,18 +40,27 @@ export class MahjongTileComponent implements OnInit {
   getTileImagePath(): string {
      try {
       if(!this.tile || this.tile.isRemoved){
-        return 'tile/undefined.svg';
+        return 'assets/tile/undefined.svg';
       }
       else{
         const category = MahjongTileCategory[this.category].toString().toLowerCase();
         var offset = 1;
-        return `tile/${category}/${this.tile.value + offset}.svg`;
+        return `assets/tile/${category}/${this.tile.value + offset}.svg`;
       }
     } 
     catch(e) {
       this.logger.error('Error loading tile image:', e);
-      return 'tile/default.png';
+      return 'assets/tile/undefined.svg';
     }
+  }
 
+  onImageError(event: any): void {
+    this.logger.error('Failed to load tile image:', event.target.src);
+    // Fallback vers une image par défaut
+    event.target.src = 'assets/tile/undefined.svg';
+  }
+
+  onImageLoad(event: any): void {
+    this.logger.log('Tile image loaded successfully:', event.target.src);
   }
 }

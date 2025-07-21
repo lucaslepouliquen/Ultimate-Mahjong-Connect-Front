@@ -3,7 +3,13 @@
        [class.selected]="isSelected"
        [class.removed]="isRemoved"
        [class.matched]="isMatched">
-    <img *ngIf="tile" [src]="getTileImagePath()" alt="Mahjong Tile" class="tile-image">
+    <img *ngIf="tile" 
+         [src]="getTileImagePath()" 
+         [alt]="'Mahjong Tile ' + tile.displayText" 
+         class="tile-image"
+         (error)="onImageError($event)"
+         (load)="onImageLoad($event)"
+         loading="lazy">
   </div>
 </div> 
   
