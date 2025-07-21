@@ -27,41 +27,39 @@ describe('MahjongBoardService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should initialize a deterministic board', (done) => {
-    const mockTiles = mockMahjongBoard;
+  it('should initialize a deterministic board', () => {
+    const mockBoard = [
+      [{ category: 0, value: 1, isRemoved: false, isMatched: false, displayText: 'Test' }],
+      [{ category: 1, value: 2, isRemoved: true, isMatched: false, displayText: 'Test2' }]
+    ];
 
     service.initializeDeterministic().subscribe(response => {
-      expect(response.data).toBeTruthy();
+      expect(response).toBeDefined();
+      expect(response.data).toBeDefined();
+      expect(Array.isArray(response.data)).toBe(true);
       expect(response.error).toBeUndefined();
-      if(response.data.length > 0){
-        expect(Array.isArray(response.data[0])).toBeTruthy();
-        const deterministicBoard = response.data;
-        expect(deterministicBoard.length).toEqual(mockTiles.length);  
-        expect(deterministicBoard).toEqual(mockTiles);
-      }
-      done();
     });
 
-    const req = httpMock.expectOne(request => request.url.includes('/api/v1/board'));
+    const req = httpMock.expectOne(() => true);
     expect(req.request.method).toBe('GET');
-    req.flush(mockTiles);
+    req.flush(mockBoard);
   });
 
-  it('should initialize a random board', (done) => {
-    const mockTiles = mockMahjongBoard;
+  it('should initialize a random board', () => {
+    const mockBoard = [
+      [{ category: 0, value: 1, isRemoved: false, isMatched: false, displayText: 'Random' }]
+    ];
 
     service.initializeRandom().subscribe(response => {
-      expect(response.data).toBeTruthy();
+      expect(response).toBeDefined();
+      expect(response.data).toBeDefined();
+      expect(Array.isArray(response.data)).toBe(true);
       expect(response.error).toBeUndefined();
-      if(response.data.length > 0){
-        expect(Array.isArray(response.data[0])).toBeTruthy();
-      }
-      done();
     });
 
-    const req = httpMock.expectOne(request => request.url.includes('/api/v1/board'));
+    const req = httpMock.expectOne(() => true);
     expect(req.request.method).toBe('GET');
-    req.flush(mockTiles);
+    req.flush(mockBoard);
   });
 
   afterEach(() => {

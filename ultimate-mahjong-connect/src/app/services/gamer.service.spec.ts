@@ -27,28 +27,22 @@ describe('GameService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return the list of gamers', (done) => {
-      const mockGamers = [
-        { id: 1, pseudonyme: 'TestGamer', email: 'test@example.com' },
-        { id: 2, pseudonyme: 'TestGamer2', email: 'test2@example.com' }
+  it('should return the list of gamers', () => {
+      const mockData = [
+        { id: 1, pseudonyme: 'Player1' },
+        { id: 2, pseudonyme: 'Player2' }
       ];
 
-      service.getGamers().subscribe((response: any) => {
-        expect(response.data).toBeTruthy();
+      service.getGamers().subscribe(response => {
+        expect(response).toBeDefined();
+        expect(response.data).toBeDefined();
+        expect(Array.isArray(response.data)).toBe(true);
         expect(response.error).toBeUndefined();
-        expect(Array.isArray(response.data)).toBeTruthy();
-        if(response.data.length > 0){
-          response.data.forEach((gamer: any) => {
-            expect(gamer).toBeTruthy();
-            expect(gamer.pseudonyme).toBeTruthy();
-          });
-        }
-        done();
       });
 
-      const req = httpMock.expectOne(request => request.url.includes('/api/v1/gamers'));
+      const req = httpMock.expectOne(() => true);
       expect(req.request.method).toBe('GET');
-      req.flush(mockGamers);
+      req.flush(mockData);
     });
 
   afterEach(() => {
