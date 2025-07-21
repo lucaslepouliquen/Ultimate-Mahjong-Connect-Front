@@ -18,3 +18,9 @@
   <div *ngIf="isProcessing" class="processing-info">
     Validation en cours...
   </div>
+
+  <div class="controls">
+    <button (click)="resetBoard()" [disabled]="isProcessing" class="reset-button">
+      🔄 Nouveau Jeu
+    </button>
+  </div>

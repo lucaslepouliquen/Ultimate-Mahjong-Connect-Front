@@ -64,3 +64,66 @@
     50% { opacity: 0.5; }
     100% { opacity: 1; }
   }
+
+  /* Contrôles */
+  .controls {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .reset-button {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .reset-button:hover:not(:disabled) {
+    background: #1976D2;
+  }
+
+  .reset-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Styles pour les tests de session */
+  .session-test-controls {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px dashed #FF9800;
+    border-radius: 8px;
+    background: rgba(255, 152, 0, 0.1);
+  }
+
+  .session-test-controls h4 {
+    margin: 0 0 10px 0;
+    color: #FF9800;
+  }
+
+  .test-button {
+    background: #FF9800;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 5px 5px 0;
+    transition: background 0.3s ease;
+  }
+
+  .test-button:hover {
+    background: #F57C00;
+  }
+
+  .session-test-controls small {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+    font-style: italic;
+  }

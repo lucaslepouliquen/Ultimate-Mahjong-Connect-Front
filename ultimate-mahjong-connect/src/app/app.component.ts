@@ -4,6 +4,7 @@ import { BoardComponent } from './components/mahjong-board/mahjong-board.compone
 import { MahjongToolbarComponent } from './components/mahjong-toolbar/mahjong-toolbar.component';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoggerService } from './services/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,17 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AppComponent {
   title = 'Ultimate Mahjong Connect';
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private logger: LoggerService
+  ) {}
 
   onMenuClick(): void {
-    console.log('Menu clicked');
+    this.logger.log('Menu clicked');
   }
 
   onFavoriteClick(): void {
-    console.log('Favorite clicked');
+    this.logger.log('Favorite clicked');
   }
 
   openShareDialog(): void {

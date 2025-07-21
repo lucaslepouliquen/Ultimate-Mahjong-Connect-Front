@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MahjongTileCategory, Tile } from '../../models/tile';
 import { CommonModule } from '@angular/common';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-mahjong-tile',
@@ -17,9 +18,13 @@ export class MahjongTileComponent implements OnInit {
   @Input() isMatched: boolean=false;
   @Input() displayText: string="";
 
+  constructor(
+    private logger: LoggerService
+  ) {}
+
   ngOnInit(): void {
     if(!this.tile){
-      console.error('Tile is undefined');
+      this.logger.error('Tile is undefined');
     } else {
       this.category = this.category || this.tile.category;
       this.value = this.value || this.tile.value;
@@ -42,7 +47,7 @@ export class MahjongTileComponent implements OnInit {
       }
     } 
     catch(e) {
-      console.error('Error loading tile image:', e);
+      this.logger.error('Error loading tile image:', e);
       return 'tile/default.png';
     }
 

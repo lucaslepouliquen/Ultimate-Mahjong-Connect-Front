@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-share-dialog',
@@ -13,6 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class ShareDialogComponent {
   isCopied: boolean = false;
+
+  constructor(
+    private logger: LoggerService
+  ) {}
 
   share(method:string) {
     var url = window.location.href;
@@ -37,19 +42,19 @@ export class ShareDialogComponent {
         this.copyToClipboard();
         break;
       default:
-        console.error('Invalid sharing method');
+        this.logger.error('Invalid sharing method');
     }
   }
 
   copyToClipboard(): boolean{
     navigator.clipboard.writeText(window.location.origin + window.location.pathname)
       .then(() => {
-        console.log('Texte copié!');
+        this.logger.log('Texte copié!');
         this.isCopied = true;
         setTimeout(() => this.isCopied = false, 2000);
       })
       .catch(err => {
-        console.error('Erreur lors de la copie: ', err);
+        this.logger.error('Erreur lors de la copie: ', err);
       });
     this.isCopied = true
     return true
