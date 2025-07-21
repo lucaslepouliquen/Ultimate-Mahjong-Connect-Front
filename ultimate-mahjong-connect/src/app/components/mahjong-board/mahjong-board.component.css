@@ -1,170 +1,220 @@
-  .row {
-    display: flex;
-    justify-content: center; 
-    flex-wrap: nowrap;
-    margin-bottom: 5px;
-    width: 100%;
-  }
+.board-container {
+  height: calc(100vh - 120px); 
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+}
 
-  .board {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 100%;
-    gap: 0.2%;
-    margin: 0 auto;
-    transition: opacity 0.3s ease;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px var(--shadow-light);
-  }
+.board-container::-webkit-scrollbar {
+  width: 12px;
+}
 
-  .board.processing {
-    opacity: 0.7;
-    pointer-events: none;
-  }
+.board-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  margin: 10px;
+}
 
-  /* Styles pour les tuiles */
-  .grid-item {
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
+.board-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+  border-radius: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
 
-  .grid-item:hover {
-    transform: scale(1.05);
-  }
+.board-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-color) 100%);
+}
 
-  .grid-item.selected {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px var(--success-color);
-    border: 2px solid var(--success-color);
-    border-radius: 8px;
-  }
+.row {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: nowrap;
+  margin-bottom: 5px;
+  width: 100%;
+}
 
-  .grid-item.removed {
-    opacity: 0.3;
-    pointer-events: none;
-  }
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  gap: 0.2%;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px var(--shadow-light);
+  min-height: fit-content;
+}
 
-  /* Feedback visuel */
-  .selection-info {
-    text-align: center;
-    margin: 10px 0;
-    font-weight: 600;
-    color: var(--success-color);
-    font-size: 16px;
-    text-shadow: 0 1px 2px var(--shadow-light);
-  }
+.board.processing {
+  opacity: 0.7;
+  pointer-events: none;
+}
 
-  .processing-info {
-    text-align: center;
-    margin: 10px 0;
-    font-weight: 600;
-    color: var(--warning-color);
-    animation: pulse 1.5s infinite;
-    font-size: 16px;
-  }
+/* Styles pour les tuiles */
+.grid-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-  @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-  }
+.grid-item:hover {
+  transform: scale(1.05);
+}
 
-  /* Contrôles */
-  .controls {
-    text-align: center;
-    margin: 20px 0;
-  }
+.grid-item.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--success-color);
+  border: 2px solid var(--success-color);
+  border-radius: 8px;
+}
 
-  .reset-button {
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--shadow-medium);
-    position: relative;
-    overflow: hidden;
-  }
+.grid-item.removed {
+  opacity: 0.3;
+  pointer-events: none;
+}
 
-  .reset-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
+/* Feedback visuel */
+.selection-info {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: 600;
+  color: var(--success-color);
+  font-size: 16px;
+  text-shadow: 0 1px 2px var(--shadow-light);
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
 
-  .reset-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-  }
+.processing-info {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: 600;
+  color: var(--warning-color);
+  animation: pulse 1.5s infinite;
+  font-size: 16px;
+  position: sticky;
+  top: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
 
-  .reset-button:hover:not(:disabled)::before {
-    left: 100%;
-  }
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
 
-  .reset-button:active:not(:disabled) {
-    transform: translateY(0);
-    transition: all 0.1s ease;
-  }
+/* Contrôles */
+.controls {
+  text-align: center;
+  margin: 20px 0;
+  position: sticky;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
 
-  .reset-button:disabled {
-    background: var(--text-secondary);
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
+.reset-button {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--shadow-medium);
+  position: relative;
+  overflow: hidden;
+}
 
-  /* Styles pour les tests de session */
-  .session-test-controls {
-    margin-top: 20px;
-    padding: 15px;
-    border: 2px dashed var(--warning-color);
-    border-radius: 12px;
-    background: rgba(245, 158, 11, 0.05);
-    backdrop-filter: blur(5px);
-  }
+.reset-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
 
-  .session-test-controls h4 {
-    margin: 0 0 10px 0;
-    color: var(--warning-color);
-    font-weight: 600;
-  }
+.reset-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-medium);
+}
 
-  .test-button {
-    background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    margin: 0 5px 5px 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px var(--shadow-light);
-  }
+.reset-button:hover:not(:disabled)::before {
+  left: 100%;
+}
 
-  .test-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--shadow-medium);
-  }
+.reset-button:active:not(:disabled) {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
 
-  .session-test-controls small {
-    display: block;
-    margin-top: 10px;
-    color: var(--text-secondary);
-    font-style: italic;
-    font-size: 12px;
-  }
+.reset-button:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Styles pour les tests de session */
+.session-test-controls {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px dashed var(--warning-color);
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.session-test-controls h4 {
+  margin: 0 0 10px 0;
+  color: var(--warning-color);
+  font-weight: 600;
+}
+
+.test-button {
+  background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 5px 5px 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.test-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.session-test-controls small {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 12px;
+}

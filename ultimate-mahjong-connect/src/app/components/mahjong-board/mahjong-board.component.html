@@ -1,4 +1,5 @@
-<div class="board" [class.processing]="isProcessing">
+<div class="board-container">
+  <div class="board" [class.processing]="isProcessing">
     <div *ngFor="let row of board; let i = index" class="row">
       <app-mahjong-tile class="grid-item"
         *ngFor="let tile of row; let j = index"
@@ -24,3 +25,4 @@
       🔄 Nouveau Jeu
     </button>
   </div>
+</div>
