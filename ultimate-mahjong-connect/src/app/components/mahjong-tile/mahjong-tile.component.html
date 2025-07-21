@@ -1,5 +1,8 @@
-<div *ngIf = "tile" class="tile-container">
-  <div class="tile" [class.hidden]="tile.isRemoved">
+<div *ngIf="tile" class="tile-container">
+  <div class="tile" 
+       [class.selected]="isSelected"
+       [class.removed]="isRemoved"
+       [class.matched]="isMatched">
     <img *ngIf="tile" [src]="getTileImagePath()" alt="Mahjong Tile" class="tile-image">
   </div>
 </div> 

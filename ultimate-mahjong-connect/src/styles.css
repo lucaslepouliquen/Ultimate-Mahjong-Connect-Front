@@ -1,16 +1,34 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import '@fortawesome/fontawesome-free/css/all.css';
 
+/* Variables CSS pour une palette de couleurs cohérente */
+:root {
+  --primary-bg: #f8fafc;
+  --secondary-bg: #e2e8f0;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #cbd5e1;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary);
   }
   
   app-root {
-    background-color: #FFFFE0;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
     display: block;
     width: 100%;
     height: 100%;
