@@ -28,7 +28,7 @@ export class BoardComponent implements OnInit {
 
   loadBoard(): void {
     this.logger.log('🎮 Loading board...');
-    this.boardService.initializeDeterministic().subscribe((response) => {
+    this.boardService.initializePlayable().subscribe((response) => {
       this.logger.log('🎮 Board response received:', response);
       if(response.data){
         this.board = response.data;

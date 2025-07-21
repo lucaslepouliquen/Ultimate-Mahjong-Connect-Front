@@ -33,7 +33,7 @@ describe('MahjongBoardService', () => {
       [{ category: 1, value: 2, isRemoved: true, isMatched: false, displayText: 'Test2' }]
     ];
 
-    service.initializeDeterministic().subscribe(response => {
+    service.initializePlayable().subscribe(response => {
       expect(response).toBeDefined();
       expect(response.data).toBeDefined();
       expect(Array.isArray(response.data)).toBe(true);

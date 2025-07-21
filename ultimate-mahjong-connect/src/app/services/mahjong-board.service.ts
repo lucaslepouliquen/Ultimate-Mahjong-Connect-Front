@@ -11,6 +11,13 @@ export interface ServiceResponse<T> {
   error?: string;
 }
 
+export interface PlayableBoardResponse {
+  message: string;
+  board: Tile[][];
+  difficulty: string;
+  guaranteed: string;
+}
+
 export interface PathValidationResponse {
   isValid: boolean;
   path: {
@@ -39,23 +46,31 @@ export class MahjongBoardService {
     this.logger = inject(LoggerService);
   }
   
-    initializeDeterministic(): Observable<ServiceResponse<Tile[][]>>
+    initializePlayable(): Observable<ServiceResponse<Tile[][]>>
     {
-      this.logger.log('🎯 initializeDeterministic called');
-      return this.http.get<Tile[][]>(`${this.apiUrl}?mode=deterministic`, { withCredentials: true })
+      this.logger.log('🎯 initializePlayable called');
+      return this.http.get<PlayableBoardResponse>(`${this.apiUrl}/playable`, { withCredentials: true })
       .pipe(
-        map(board => {
-          this.logger.log('✅ Board received:', board ? `${board.length}x${board[0]?.length}` : 'null');
-          return { data: board };
+        map(response => {
+          this.logger.log('✅ Playable board response received:', response);
+          this.logger.log('✅ Board dimensions:', response.board ? `${response.board.length}x${response.board[0]?.length}` : 'null');
+          this.logger.log('✅ Difficulty:', response.difficulty);
+          this.logger.log('✅ Guaranteed:', response.guaranteed);
+          return { data: response.board };
         }),
         catchError(err => {
-          this.logger.error('❌ Error in initializeDeterministic:', err);
+          this.logger.error('❌ Error in initializePlayable:', err);
           return of ({
             data: [[]],
             error: this.errorService.formatError(err)
           });
         })
       )
+    }
+
+    // Méthode de compatibilité - utilise maintenant /playable
+    initializeDeterministic(): Observable<ServiceResponse<Tile[][]>> {
+      return this.initializePlayable();
     }
   
     initializeRandom(): Observable<ServiceResponse<Tile[][]>> 
