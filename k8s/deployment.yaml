@@ -66,10 +66,8 @@ kind: Ingress
 metadata:
   name: ultimate-mahjong-connect-front-ingress
   namespace: ultimate-mahjong-connect
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  ingressClassName: traefik
   rules:
   - host: mahjong-connect.local
     http:
