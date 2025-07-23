@@ -15,8 +15,7 @@ export class ApiConfigService {
       return 'https://localhost:7049';
     }
     
-    // Utiliser l'ingress au lieu du NodePort direct (plus sécurisé)
-    return 'http://192.168.1.186';  // Ingress sur port 80
+    return 'https://ultimate-mahjong-connect.local';  
   }
 
   private isDevMode(): boolean {
