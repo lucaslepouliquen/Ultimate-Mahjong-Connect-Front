@@ -79,3 +79,7 @@ spec:
             name: ultimate-mahjong-connect-front-service
             port:
               number: 80 
+  tls:
+  - hosts:
+    - mahjong-connect.local
+    secretName: mahjong-connect-local-tls
