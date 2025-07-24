@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, switchMap, of } from 'rxjs';
 import { ApiConfigService } from './api-config.service';
+import { AnonymousSessionService, AnonymousSession } from './anonymous-session.service';
 
 export interface LoginRequest {
   usernameOrEmail: string;
@@ -33,6 +34,7 @@ export interface User {
 export class AuthService {
   private http = inject(HttpClient);
   private apiConfig = inject(ApiConfigService);
+  private anonymousSessionService = inject(AnonymousSessionService);
   
   private readonly TOKEN_KEY = 'mahjong_jwt_token';
   private readonly USER_KEY = 'mahjong_user';
@@ -58,7 +60,14 @@ export class AuthService {
   login(credentials: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiConfig.getApiBaseUrl()}/api/v1/auth/login`, credentials)
       .pipe(
-        tap(response => this.handleAuthSuccess(response))
+        tap(response => {
+          this.handleAuthSuccess(response);
+          // Clear anonymous session when user logs in
+          const anonymousSession = this.anonymousSessionService.getCurrentAnonymousSession();
+          if (anonymousSession) {
+            this.anonymousSessionService.deleteAnonymousSession(anonymousSession.sessionId).subscribe();
+          }
+        })
       );
   }
 
@@ -68,8 +77,78 @@ export class AuthService {
   register(userData: RegisterRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiConfig.getApiBaseUrl()}/api/v1/auth/register`, userData)
       .pipe(
-        tap(response => this.handleAuthSuccess(response))
+        tap(response => {
+          this.handleAuthSuccess(response);
+          // Clear anonymous session when user registers
+          const anonymousSession = this.anonymousSessionService.getCurrentAnonymousSession();
+          if (anonymousSession) {
+            this.anonymousSessionService.deleteAnonymousSession(anonymousSession.sessionId).subscribe();
+          }
+        })
       );
+  }
+
+  /**
+   * Create anonymous session for users who want to play without registration
+   */
+  createAnonymousSession(): Observable<AnonymousSession> {
+    return this.anonymousSessionService.createAnonymousSession();
+  }
+
+  /**
+   * Get current anonymous session
+   */
+  getCurrentAnonymousSession(): AnonymousSession | null {
+    return this.anonymousSessionService.getCurrentAnonymousSession();
+  }
+
+  /**
+   * Check if user has an anonymous session
+   */
+  hasAnonymousSession(): boolean {
+    return this.anonymousSessionService.hasAnonymousSession();
+  }
+
+  /**
+   * Get current authentication token (JWT or anonymous)
+   */
+  getCurrentToken(): string | null {
+    // First check for regular JWT token
+    const jwtToken = this.getToken();
+    if (jwtToken) return jwtToken;
+    
+    // Then check for anonymous session token
+    return this.anonymousSessionService.getAnonymousToken();
+  }
+
+  /**
+   * Check if user is authenticated (either with JWT or anonymous session)
+   */
+  isUserAuthenticated(): boolean {
+    return this.hasToken() || this.hasAnonymousSession();
+  }
+
+  /**
+   * Get anonymous session observable
+   */
+  getAnonymousSession$() {
+    return this.anonymousSessionService.anonymousSession$;
+  }
+
+  /**
+   * Check if user has a regular JWT token (not anonymous)
+   */
+  hasRegularToken(): boolean {
+    return this.hasToken();
+  }
+
+  /**
+   * Get current authentication status for display
+   */
+  getAuthStatus(): 'authenticated' | 'anonymous' | 'none' {
+    if (this.hasToken()) return 'authenticated';
+    if (this.hasAnonymousSession()) return 'anonymous';
+    return 'none';
   }
 
   /**
@@ -80,6 +159,12 @@ export class AuthService {
     localStorage.removeItem(this.USER_KEY);
     this.isAuthenticatedSubject.next(false);
     this.currentUserSubject.next(null);
+    
+    // Also clear anonymous session if exists
+    const anonymousSession = this.anonymousSessionService.getCurrentAnonymousSession();
+    if (anonymousSession) {
+      this.anonymousSessionService.deleteAnonymousSession(anonymousSession.sessionId).subscribe();
+    }
   }
 
   /**

@@ -6,20 +6,24 @@ import { LoggerService } from '../services/logger.service';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const logger = inject(LoggerService);
-  const token = authService.getToken();
+  
+  // Get current token (JWT or anonymous)
+  const token = authService.getCurrentToken();
 
   let modifiedReq = req.clone({
     setHeaders: {},
     withCredentials: true // Force l'inclusion des cookies pour toutes les requêtes
   });
 
-  // Add authorization header if token exists
+  // Add authorization header if token exists (JWT or anonymous)
   if (token) {
     modifiedReq = modifiedReq.clone({
       headers: modifiedReq.headers.set('Authorization', `Bearer ${token}`)
     });
+    logger.log(`HTTP Request to ${modifiedReq.url} with token: ${token.substring(0, 20)}...`);
+  } else {
+    logger.log(`HTTP Request to ${modifiedReq.url} without token`);
   }
-  logger.log(`HTTP Request to ${modifiedReq.url} with credentials: ${modifiedReq.withCredentials}`);
   
   return next(modifiedReq);
 }; 

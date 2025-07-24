@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-mahjong-toolbar',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
 export class MahjongToolbarComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private logger = inject(LoggerService);
   
   @Input() title: string = '';
   
@@ -26,6 +28,7 @@ export class MahjongToolbarComponent {
   @Output() shareClicked = new EventEmitter<void>();
 
   currentUser$ = this.authService.currentUser$;
+  isAuthenticated$ = this.authService.isAuthenticated$;
 
   onMenuClick(): void {
     this.menuClicked.emit();
@@ -39,8 +42,14 @@ export class MahjongToolbarComponent {
     this.shareClicked.emit();
   }
 
-  onLogout(): void {
-    this.authService.logout();
+  onLogin(): void {
+    this.logger.log('🔐 User wants to login, navigating to auth page...');
     this.router.navigate(['/auth/login']);
+  }
+
+  onLogout(): void {
+    this.logger.log('🚪 User logging out...');
+    this.authService.logout();
+    // Stay on the board, user can continue playing anonymously
   }
 } 

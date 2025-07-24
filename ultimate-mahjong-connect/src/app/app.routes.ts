@@ -24,16 +24,14 @@ export const routes: Routes = [
   },
   {
     path: 'game',
-    canActivate: [authGuard],
-    component: AppComponent
+    component: AppComponent  // Board accessible sans authentification
   },
   {
     path: '',
-    redirectTo: 'game',
-    pathMatch: 'full'
+    component: AppComponent  // Page d'accueil = board directement
   },
   {
     path: '**',
-    redirectTo: 'auth/login'
+    redirectTo: ''  // Rediriger vers le board au lieu de login
   }
 ];
