@@ -98,8 +98,8 @@ export class BoardComponent implements OnInit {
               setTimeout(() => {
                 this.currentTurnRemovedTiles = [];
                 this.logger.log('🎮 Cleared currentTurnRemovedTiles');
-              }, 1000);
-            }, 2000);
+              }, 300);
+            }, 500); 
           } else {
             this.logger.warn('Invalid path:', response.data?.message || response.error || 'No valid path found');
             this.clearPath();
