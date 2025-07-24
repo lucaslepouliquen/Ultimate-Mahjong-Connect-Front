@@ -114,7 +114,8 @@ export class MahjongBoardService {
     resetBoard(): Observable<ServiceResponse<any>>
     {
       this.logger.log('🎯 resetBoard called');
-      return this.http.post<any>(`${this.apiUrl}/reset`, {}, { withCredentials: true }).pipe(
+      return this.http.get<PlayableBoardResponse>(`${this.apiUrl}/playable`, { withCredentials: true })
+      .pipe(
         map(response => {
           this.logger.log('Reset board response:', response);
           return { data: response };
