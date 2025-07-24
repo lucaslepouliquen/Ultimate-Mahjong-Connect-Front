@@ -1,5 +1,5 @@
 <div class="board-container">
-  <div class="board" [class.processing]="isProcessing">
+  <div class="board" [class.processing]="isProcessing" [style.transform]="getBoardTransform()">
     <div *ngFor="let row of board; let i = index" class="row">
       <app-mahjong-tile class="grid-item"
         *ngFor="let tile of row; let j = index"
@@ -30,5 +30,46 @@
     <button (click)="resetBoard()" [disabled]="isProcessing" class="reset-button">
       🔄 Nouveau Jeu
     </button>
+    
+    <!-- Contrôles de zoom -->
+    <div class="zoom-controls">
+      <button (click)="zoomOut()" [disabled]="zoomLevel <= minZoom" class="zoom-button" title="Zoom arrière">
+        🔍-
+      </button>
+      <span class="zoom-level">{{ (zoomLevel * 100).toFixed(0) }}%</span>
+      <button (click)="zoomIn()" [disabled]="zoomLevel >= maxZoom" class="zoom-button" title="Zoom avant">
+        🔍+
+      </button>
+      <button (click)="resetZoom()" class="zoom-button" title="Zoom par défaut">
+        🔍↺
+      </button>
+    </div>
+    
+    <!-- Bouton minimap -->
+    <button (click)="toggleMinimap()" class="minimap-button" title="Afficher/Masquer la minimap">
+      🗺️
+    </button>
+  </div>
+
+  <!-- Minimap -->
+  <div *ngIf="showMinimap" class="minimap-container">
+    <div class="minimap" (click)="onMinimapClick($event)">
+      <div class="minimap-board">
+        <div *ngFor="let row of board; let i = index" class="minimap-row">
+          <div *ngFor="let tile of row; let j = index" 
+               class="minimap-tile"
+               [class.removed]="tile?.isRemoved"
+               [class.selected]="isTileSelected(i, j)"
+               [class.path-tile]="isTileInPath(i, j)"
+               [attr.data-category]="tile?.category">
+            <span class="minimap-symbol">{{ getTileSymbol(tile) }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="viewport-indicator" 
+           [style.left]="(viewportPosition.x * 100) + '%'"
+           [style.top]="(viewportPosition.y * 100) + '%'">
+      </div>
+    </div>
   </div>
 </div>

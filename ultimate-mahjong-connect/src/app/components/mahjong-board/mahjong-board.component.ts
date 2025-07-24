@@ -19,6 +19,14 @@ export class BoardComponent implements OnInit {
   pathTiles: { row: number, col: number }[] = []; // Tuiles du chemin de validation
   showPath: boolean = false; // Afficher le chemin
   currentTurnRemovedTiles: { row: number, col: number }[] = []; // Tuiles supprimées ce tour
+  
+  showMinimap: boolean = false;
+  minimapScale: number = 0.15;
+  viewportPosition: { x: number; y: number } = { x: 0, y: 0 };
+  
+  zoomLevel: number = 1;
+  minZoom: number = 0.5;
+  maxZoom: number = 2;
   private boardService = inject(MahjongBoardService)
   private logger = inject(LoggerService);
 
@@ -196,5 +204,85 @@ export class BoardComponent implements OnInit {
         this.isProcessing = false;
       }
     });
+  }
+
+  toggleMinimap(): void {
+    this.showMinimap = !this.showMinimap;
+    this.logger.log(`🗺️ Minimap ${this.showMinimap ? 'affichée' : 'masquée'}`);
+  }
+
+  onMinimapClick(event: MouseEvent): void {
+    const minimapElement = event.currentTarget as HTMLElement;
+    const rect = minimapElement.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    
+    this.viewportPosition = { x, y };
+    this.logger.log(`🗺️ Navigation minimap: (${x.toFixed(2)}, ${y.toFixed(2)})`);
+  }
+
+  zoomIn(): void {
+    if (this.zoomLevel < this.maxZoom) {
+      this.zoomLevel = Math.min(this.maxZoom, this.zoomLevel + 0.1);
+      this.logger.log(`🔍 Zoom in: ${this.zoomLevel.toFixed(1)}`);
+    }
+  }
+
+  zoomOut(): void {
+    if (this.zoomLevel > this.minZoom) {
+      this.zoomLevel = Math.max(this.minZoom, this.zoomLevel - 0.1);
+      this.logger.log(`🔍 Zoom out: ${this.zoomLevel.toFixed(1)}`);
+    }
+  }
+
+  resetZoom(): void {
+    this.zoomLevel = 1;
+    this.logger.log('🔍 Zoom reset to 1.0');
+  }
+
+  getBoardTransform(): string {
+    return `scale(${this.zoomLevel})`;
+  }
+
+  getTileSymbol(tile: any): string {
+    if (!tile || tile.isRemoved) return '';
+    
+    const category = tile.category;
+    const value = tile.value;
+    
+    switch (category) {
+      case 2: 
+        return this.getChineseNumber(value);
+      case 0: 
+        return '🎋';
+      case 1: 
+        return '●';
+      case 3: 
+        return this.getWindSymbol(value);
+      case 4: 
+        return this.getDragonSymbol(value);
+      case 5:
+        return '🌸';
+      case 6:
+        return '🌺';
+      default:
+        this.logger.warn(`🎯 Catégorie inconnue: ${category}, valeur: ${value}`);
+        return '?';
+    }
+  }
+
+  private getChineseNumber(value: number): string {
+    const numbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九'];
+    return numbers[value - 1] || value.toString();
+  }
+
+  private getWindSymbol(value: number): string {
+    const winds = ['東', '南', '西', '北'];
+    return winds[value - 1] || '風';
+  }
+
+  private getDragonSymbol(value: number): string {
+    const dragons = ['白', '發', '中'];
+    return dragons[value - 1] || '龍';
   }
 }
